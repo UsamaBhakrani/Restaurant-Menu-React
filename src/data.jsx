@@ -1,4 +1,3 @@
-
 const menu = [
   {
     id: 1,
@@ -74,6 +73,4 @@ const menu = [
   },
 ];
 
-const categories = ["all", "breakfast", "lunch", "shakes"];
-
-export { menu, categories };
+export default menu;
