@@ -8,12 +8,10 @@ const categories = ["all", "breakfast", "lunch", "shakes"];
 const App = () => {
   const [category, setCategory] = useState("all");
   const [visibleMenu, setVisibleMenu] = useState(menu);
-  console.log(category);
 
   const filteredItems = visibleMenu.filter(
     (menu) => menu.category === category
   );
-  console.log(filteredItems);
 
   return (
     <main>
@@ -28,7 +26,9 @@ const App = () => {
             onSelect={(item) => setCategory(item)}
           />
         </div>
-        <div className="btn-container">{<Menu menu={filteredItems} />}</div>
+        <div className="btn-container">
+          {<Menu menu={category === "all" ? visibleMenu : filteredItems} />}
+        </div>
       </section>
     </main>
   );
