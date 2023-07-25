@@ -7,8 +7,8 @@ const Menu = ({ menu }) => {
             <img src={item.img} alt={item.title} className="photo" />
             <div className="item-info">
               <header>
-                <h5>{item.title}</h5>
-                <span className="item-price">${item.price}</span>
+                <h4>{item.title}</h4>
+                <span className="price">${item.price}</span>
               </header>
               <p className="item-text">{item.desc}</p>
             </div>

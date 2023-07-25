@@ -3,31 +3,33 @@ import Menu from "./Menu";
 import Categories from "./Categories";
 import { useState } from "react";
 
-const categories = ["all", "breakfast", "lunch", "shakes"];
+const allCategories = ["all", ...new Set(menu.map((item) => item.category))];
 
 const App = () => {
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState(allCategories);
   const [visibleMenu, setVisibleMenu] = useState(menu);
 
-  const filteredItems = visibleMenu.filter(
-    (menu) => menu.category === category
-  );
+  const filteredItems = (cat) => {
+    if (cat === "all") {
+      setVisibleMenu(menu);
+      return;
+    }
+    const newItems = menu.filter((item) => item.category === cat);
+    setVisibleMenu(newItems);
+  };
 
   return (
     <main>
-      <section className="menu">
+      <section className="menu section">
         <div className="title">
           <h2>Our Menu</h2>
-          <div className="title-underline"></div>
+          <div className="underline"></div>
         </div>
         <div className="section-center">
-          <Categories
-            categories={categories}
-            onSelect={(item) => setCategory(item)}
-          />
+          <Categories category={category} filteredItems={filteredItems} />
         </div>
         <div className="btn-container">
-          {<Menu menu={category === "all" ? visibleMenu : filteredItems} />}
+          <Menu menu={visibleMenu} />
         </div>
       </section>
     </main>
